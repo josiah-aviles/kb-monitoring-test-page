@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example County Assessor &mdash; Frequently Asked Questions (staging)</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 48rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+  .notice { background: #fff8e1; border: 1px solid #e0c060; padding: 0.75rem 1rem; }
+  button { display: block; margin: 0.5rem 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Example County Assessor: Frequently Asked Questions</h1>
+
+<p class="notice"><strong>This is not a real assessor's office.</strong> This page exists only so
+that knowledge base page monitoring can be tested in staging. Its answers load only when a
+question is clicked, the way many county FAQ pages work, so monitoring cannot see them.</p>
+
+<p>These answers cover the questions we hear most often about exemptions, deadlines and
+appeals. Click a question to read its answer. If your question is not here, call the office
+during business hours and a member of staff will help you.</p>
+
+<button aria-expanded="false" aria-controls="answer-1">Who qualifies for the over 65 exemption?</button>
+<div id="answer-1"></div>
+<button aria-expanded="false" aria-controls="answer-2">When is the homestead filing deadline?</button>
+<div id="answer-2"></div>
+<button aria-expanded="false" aria-controls="answer-3">How do I appeal my assessed value?</button>
+<div id="answer-3"></div>
+
+<script>
+  const answers = {
+    "answer-1": "Owners aged 65 or older on January 1 who live in the home as their main residence.",
+    "answer-2": "Homestead applications are due April 1.",
+    "answer-3": "File a written appeal within 30 days of the date on your notice of value."
+  };
+  document.querySelectorAll("button[aria-controls]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const panel = document.getElementById(button.getAttribute("aria-controls"));
+      const open = button.getAttribute("aria-expanded") === "true";
+      panel.textContent = open ? "" : answers[panel.id];
+      button.setAttribute("aria-expanded", String(!open));
+    });
+  });
+</script>
+</main>
+</body>
+</html>
